@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'angular-material-demo-theme.scss';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+body {
+  margin: 0;
+}
+.pointer {cursor: pointer !important;}
+
+/*
+
+.grid-test-1 > figure.mat-figure {
+  justify-content: flex-start !important;
+}
+*/
+.page-footer{
+  position: fixed !important;
+  bottom: 0 !important;
+}
+.header{
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  z-index: 999 !important;
+
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.cartIcon{
+  display: inline-block;
+  margin-left:10px;
+  vertical-align: middle;
+  color:aliceblue !important;
+}

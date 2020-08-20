@@ -1,0 +1,22 @@
+<div class="page-container">
+  <div class="mat-card-wrapper" style="display:flex; flex-direction: row;   flex-wrap: wrap;">
+    <ng-container *ngFor="let card of obs | async">
+      <mat-card class="mat-card-home flip-card">
+          <mat-card-content>
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img mat-card-image class="mat-card-image-user" [src]="card.image">
+                <p>{{card.productDetails}}</p>
+              </div>
+              <div class="flip-card-back">
+                <h1>About Product</h1>
+                <p>This is healthy Product</p>
+                <p>you would like it </p>
+              </div>
+           </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+  <mat-paginator class="pagination" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

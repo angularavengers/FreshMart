@@ -1,0 +1,126 @@
+
+.active{
+  background-color:rgba(9, 30, 66, 0.25);
+}
+
+.sidenav-item{
+    color: white;
+    font-size:14px !important; 
+}
+
+.sidenav-item1:hover{
+  color: white;
+  background-color: #FD397A;
+  font-size:16px !important; 
+}
+mat-icon{
+  color:gray;
+}
+a {
+  color: white;
+  font-family: Lato;
+}
+
+main {
+  flex: 1;
+}
+
+.example-sidenav {
+  background-color:#1a1a27;
+}
+mat-card {
+  margin-bottom: 4px;
+}
+
+mat-toolbar {
+  overflow: hidden;
+    width: 100%;
+    min-width: 475px;
+    padding: 10px 20px 10px 10px;
+    font-size: 20px;
+    position: relative;
+    color: #FFF;
+    z-index: 1;
+}
+
+mat-toolbar:after {
+  color: white;
+  box-shadow: 5px 10px #888888;
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 25%;
+  min-width: 200px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background: #333;
+  transform-origin: bottom left;
+  -ms-transform: skew(-30deg, 0deg);
+  -webkit-transform: skew(-30deg, 0deg);
+  transform: skew(-30deg, 0deg);
+}
+mat-sidenav-container.m2app-dark {
+  background: black;
+}
+.hoverItem:hover{
+  color:pink
+}
+
+.app-sidenav {
+  min-width: 200px;
+}
+
+:host ::ng-deep  .mat-card-wrapper{
+  min-height: 500px;
+  margin-left: 35px;
+  padding-top: 80px;
+}
+:host ::ng-deep  .mat-card-home {
+  margin: 15px;
+  width:220px;
+  height: 220px;
+  border-radius: 20%;
+  }
+
+  :host ::ng-deep  .mat-card-home img{
+    margin: 0 5px 5px 15px;
+  }
+:host ::ng-deep  .page-container {
+  width:100%;
+  height: 100%;
+  margin-bottom: 5%;
+}
+
+.loginSection {
+  z-index: 3;
+  position: relative;
+}
+
+.badge {
+  font-size: 12px;
+  display: inline-block;
+  line-height: 12px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #ff0000; 
+  border: 4px solid #ff0000;
+  color: #ffffff;
+  margin-top: -20px;
+}
+.pagination{
+  display: block;
+  width: 300px;
+}
+
+.mat-toolbar.mat-primary{
+  background: #9acd32;
+}
+.mat-toolbar::after{
+  background: #008000;
+}
+.footer-copyright{
+  margin-left: 200px;
+}
