@@ -13,11 +13,11 @@
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  
+  font-weight: bold;
 }
 
 .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
+  // transform: rotateY(180deg);
 }
 
 .flip-card-front, .flip-card-back {
@@ -28,4 +28,49 @@
 
 .flip-card-back {
   transform: rotateY(180deg);
+}
+
+.mat-card-wrapper{
+  min-height: 500px;
+  margin-left: 35px;
+  padding-top: 80px;
+}
+.mat-card-home {
+  margin: 15px;
+  width:220px;
+  height: 290px;
+  border-radius: 10%;
+
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.mat-card-home img{
+  margin: 0 5px 5px 15px;
+}
+.page-container {
+  width:100%;
+  height: 100%;
+  margin-bottom: 5%;
+}
+
+.cart-steps-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+  .mat-mini-fab {
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 26px;
+  }
+}
+
+/deep/ .cart-buttons .mat-primary{
+  .mat-button-wrapper {
+    padding: 0;
+  }
 }

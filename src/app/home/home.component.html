@@ -1,19 +1,26 @@
 <div class="page-container">
   <div class="mat-card-wrapper" style="display:flex; flex-direction: row;   flex-wrap: wrap;">
-    <ng-container *ngFor="let card of obs | async">
+    <ng-container *ngFor="let item of obs | async">
       <mat-card class="mat-card-home flip-card">
-          <mat-card-content>
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <img mat-card-image class="mat-card-image-user" [src]="card.image">
-                <p>{{card.productDetails}}</p>
+        <mat-card-content>
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img mat-card-image class="mat-card-image-user" [src]="item.image">
+              <p>{{item.titlaText}}</p>
+              <p>{{item.unit}} @ ₹{{item.price}} </p>
+              <div class="cart-buttons">
+                <button mat-raised-button *ngIf="!isItemInCart(item)" color="primary" (click)="addItemToCart(item)">Add to
+                  bag
+                </button>
+                <app-qty-plus-minus [item]="item" *ngIf="isItemInCart(item)"> </app-qty-plus-minus>
               </div>
-              <div class="flip-card-back">
-                <h1>About Product</h1>
-                <p>This is healthy Product</p>
-                <p>you would like it </p>
-              </div>
-           </div>
+            </div>
+            <!-- <div class="flip-card-back">
+              <img mat-card-image class="mat-card-image-user" [src]="item.image">
+              <h1>About Product</h1>
+              <p>This is healthy Product</p>
+              <p>you would like it </p>  -->
+          </div>
         </mat-card-content>
       </mat-card>
     </ng-container>

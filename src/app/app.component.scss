@@ -72,27 +72,6 @@ mat-sidenav-container.m2app-dark {
   min-width: 200px;
 }
 
-:host ::ng-deep  .mat-card-wrapper{
-  min-height: 500px;
-  margin-left: 35px;
-  padding-top: 80px;
-}
-:host ::ng-deep  .mat-card-home {
-  margin: 15px;
-  width:220px;
-  height: 220px;
-  border-radius: 20%;
-  }
-
-  :host ::ng-deep  .mat-card-home img{
-    margin: 0 5px 5px 15px;
-  }
-:host ::ng-deep  .page-container {
-  width:100%;
-  height: 100%;
-  margin-bottom: 5%;
-}
-
 .loginSection {
   z-index: 3;
   position: relative;

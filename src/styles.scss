@@ -35,3 +35,26 @@ body {
   vertical-align: middle;
   color:aliceblue !important;
 }
+
+.mat-dialog-container {
+  padding: 0 !important;
+  // box-shadow: 4px 4px 14px 0px rgba(154,205,50,1) !important;
+}
+
+button.mat-primary{
+  background-color: #9acd32 !important;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.center {
+  text-align: center;
+}

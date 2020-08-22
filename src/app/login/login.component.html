@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="ad-content"></div>
+  <div class="login-form-wrapper">
+    <div class="mb-30 login-title">
+      <h5>Sign in to get access to your personal shopping bag and profile</h5>
+    </div>
+    <form [formGroup]="loginForm">
+      <mat-form-field>
+        <mat-label>Mobile Number</mat-label>
+        <input numberOnly formControlName="mobile" matInput>
+        <span matPrefix>+91&nbsp;</span>
+        <mat-error *ngIf="loginForm.get('mobile').invalid">Please enter your mobile number</mat-error>
+      </mat-form-field>
+      <div [formGroup]="loginForm.get('signUpForm')" *ngIf="!step1 && !isRegisteredMobile">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input formControlName="fName" matInput>
+          <mat-error *ngIf="loginForm.get('signUpForm').get('fName').invalid">Please enter your first name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lName" matInput>
+          <mat-error *ngIf="loginForm.get('signUpForm').get('lName').invalid">Please enter your last name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email Id</mat-label>
+          <input formControlName="email" matInput>
+          <mat-error *ngIf="loginForm.get('signUpForm').get('email').invalid">Please enter your email address</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput [type]="passwordHideFlag ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="passwordHideFlag = !passwordHideFlag"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{passwordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>
+            Use 8 or more characters with a combination of alphabets & numbers
+          </mat-hint>
+          <mat-error *ngIf="loginForm.get('signUpForm').get('password').invalid">Please enter a password</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input formControlName="confirmPassword" matInput [type]="confirmPasswordHideFlag ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="confirmPasswordHideFlag = !confirmPasswordHideFlag"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{confirmPasswordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('signUpForm').get('confirmPassword').invalid">Please confirm your password</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!step1">
+        <h5>OTP Verification</h5>
+        <mat-form-field>
+          <mat-label>Enter OTP received on mobile</mat-label>
+          <input formControlName="otp" matInput>
+          <mat-error *ngIf="loginForm.get('otp').invalid">Please enter the OTP yoyu just received on your mobile</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button mat-raised-button color="primary" *ngIf="step1" (click)="signInClickHandler()">Sign in</button>
+      <button mat-raised-button color="primary" *ngIf="!step1" (click)="verify()">Verify</button>
+    </div>
+  </div>
+</div>

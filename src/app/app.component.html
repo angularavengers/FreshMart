@@ -1,45 +1,42 @@
-
 <mat-sidenav-container class="wrapper">
-  <mat-sidenav #sidenav fixedInViewport='true' mode="side" mode="over" class="example-sidenav" [ngStyle]="{ 'width.em': sidenavWidth }" opened="false" (mouseenter)="increase()"
-    >
-
+  <mat-sidenav #sidenav fixedInViewport='true' mode="side" mode="over" class="example-sidenav"
+    [ngStyle]="{ 'width.em': sidenavWidth }" opened="false" (mouseenter)="increase()">
     <mat-nav-list class="hoverItem">
       <ng-container *ngFor='let item of sideBarPath'>
         <mat-list-item [routerLink]="item.path" routerLinkActive="active" class="sidenav-item1"
-         (click)="decrease(sidenav)">
+          (click)="decrease(sidenav)">
           <mat-icon md-list-icon>{{item.icon}}</mat-icon>
-          <div *ngIf="sidenavWidth > 4" class="sidenav-item ml-2" >
-            <a >{{item.title}}</a>
+          <div *ngIf="sidenavWidth > 4" class="sidenav-item ml-2">
+            <a>{{item.title}}</a>
           </div>
         </mat-list-item>
       </ng-container>
     </mat-nav-list>
-
   </mat-sidenav>
-   
+
   <mat-toolbar color="primary" class="header">
     <button mat-button class="app-menu-button" (mouseover)="sidenav.toggle()">
       <i class="material-icons">menu</i>
     </button>
     <img src="../assets/logo_w.png" style="border-radius: 50%;">
     <!-- <div class="pull-right"><span class="ml-0"> -->
-      <!-- <img class="rounded" style="width: 120px;align:pull-right" src="./assets/warriors.jpg" />
+    <!-- <img class="rounded" style="width: 120px;align:pull-right" src="./assets/warriors.jpg" />
       </span></div> -->
-      <span class="spacer"></span>
-      <div class="loginSection row">
-        <div class="col-md-6">
-          <button mat-button>
-            Login / Sign Up
-          </button>
-        </div>
-        <div class="col-md-6">
-          <button mat-icon-button (click)="clearCount()">
-            <mat-icon class="icon" class="cartIcon">shopping_cart</mat-icon>
-            <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
-          </button>
-        </div>
-        
-       </div> 
+    <span class="spacer"></span>
+    <div class="loginSection row">
+      <div class="col-md-6">
+        <button mat-button *ngIf="!isLogin"  (click)="openLoginDialog()">
+          Login
+        </button>
+        <button mat-button *ngIf= "isLogin" >Hello Lokesh</button>
+      </div>
+      <div class="col-md-6">
+        <button mat-icon-button (click)="openCart()">
+          <mat-icon class="icon" class="cartIcon">shopping_cart</mat-icon>
+          <span class="badge" *ngIf="cartCount">{{cartCount}}</span>
+        </button>
+      </div>
+    </div>
   </mat-toolbar>
 
 
@@ -51,25 +48,21 @@
     <span class="spacer"></span>
     <span class="spacer"></span>
   </mat-toolbar> -->
-  
+
   <div class="app-content">
     <router-outlet></router-outlet>
   </div>
   <div class="clear"></div>
   <mat-toolbar color="primary" class="page-footer footer">
     <!-- Footer -->
-  <footer class="font-small blue">
-    <!-- Copyright -->
-    <div class="footer-copyright text-center">© 2020 Copyright:
-      freshMart@co.pvt.ltd
-    </div>
-    <!-- Copyright -->
-  
-  </footer>
- 
-  <!-- Footer -->
-  </mat-toolbar>  
+    <footer class="font-small blue">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center">© 2020 Copyright:
+        freshMart@co.pvt.ltd
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </mat-toolbar>
 
 </mat-sidenav-container>
-
-

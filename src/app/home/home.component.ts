@@ -1,14 +1,14 @@
 import { vegitables } from './../const/product';
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { CartService } from 'app/services/cart.service';
 
 const DATA= vegitables;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./home.component.scss']
  })
 
 export class HomeComponent implements OnInit, OnDestroy {
@@ -17,7 +17,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   obs: Observable<any>;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(DATA);
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  get cartList() {
+    return this.cartService.getCartList();
+  }
+
+  constructor(
+    private cartService: CartService,
+    private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -25,7 +31,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
   }
- 
+
+  isItemInCart(item) {
+    return this.cartList[item.id];
+  } 
+
+  addItemToCart(item) {
+    this.cartService.addItemToCart(item);
+  }
  
   ngOnDestroy() {
     if (this.dataSource) {
