@@ -1,52 +1,61 @@
 <div class="container">
-  <div class="ad-content"></div>
+  <div class="ad-content">
+    <img class="add-content-logo" src="../assets/logo_w.png" style="border-radius: 50%;">
+  </div>
   <div class="login-form-wrapper">
-    <div class="mb-30 login-title">
-      <h5>Sign in to get access to your personal shopping bag and profile</h5>
+    <div class="mb-3">
+      <h5 *ngIf="step1 || isRegisteredMobile">Sign in to get access to your personal shopping bag and profile</h5>
+      <div *ngIf="!(step1 || isRegisteredMobile)">
+        <h5>Sign Up</h5>
+        Please enter required information to register with us
+      </div>
     </div>
     <form [formGroup]="loginForm">
-      <mat-form-field>
+      <mat-form-field class="mobile-number">
         <mat-label>Mobile Number</mat-label>
         <input numberOnly formControlName="mobile" matInput>
         <span matPrefix>+91&nbsp;</span>
-        <mat-error *ngIf="loginForm.get('mobile').invalid">Please enter your mobile number</mat-error>
+        <mat-error *ngIf="loginForm.get('mobile').errors?.required">Please enter your mobile number</mat-error>
+        <mat-error *ngIf="loginForm.get('mobile').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
       </mat-form-field>
-      <div [formGroup]="loginForm.get('signUpForm')" *ngIf="!step1 && !isRegisteredMobile">
+      <a mat-button  href="javascript:void(0)" (click)="setStep1()" *ngIf="!step1">Change</a>
+      <div [formGroup]="signupForm" *ngIf="!step1 && !isRegisteredMobile">
         <mat-form-field>
           <mat-label>First Name</mat-label>
           <input formControlName="fName" matInput>
-          <mat-error *ngIf="loginForm.get('signUpForm').get('fName').invalid">Please enter your first name</mat-error>
+          <mat-error >Please enter your first name</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Last Name</mat-label>
           <input formControlName="lName" matInput>
-          <mat-error *ngIf="loginForm.get('signUpForm').get('lName').invalid">Please enter your last name</mat-error>
+          <mat-error *ngIf="signupForm.get('lName').invalid">Please enter your last name</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Email Id</mat-label>
           <input formControlName="email" matInput>
-          <mat-error *ngIf="loginForm.get('signUpForm').get('email').invalid">Please enter your email address</mat-error>
+          <mat-error *ngIf="signupForm.get('email').errors?.email" >Please enter a valid email id</mat-error>
+          <mat-error *ngIf="signupForm.get('email').errors?.required">Please enter your email address</mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
           <input formControlName="password" matInput [type]="passwordHideFlag ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="passwordHideFlag = !passwordHideFlag"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{passwordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{!passwordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-hint>
             Use 8 or more characters with a combination of alphabets & numbers
           </mat-hint>
-          <mat-error *ngIf="loginForm.get('signUpForm').get('password').invalid">Please enter a password</mat-error>
+          <mat-error *ngIf="signupForm.get('password').invalid">Please enter a password</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="mt-20">
           <mat-label>Confirm Password</mat-label>
           <input formControlName="confirmPassword" matInput [type]="confirmPasswordHideFlag ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="confirmPasswordHideFlag = !confirmPasswordHideFlag"
             [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{confirmPasswordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon>{{!confirmPasswordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="loginForm.get('signUpForm').get('confirmPassword').invalid">Please confirm your password</mat-error>
+          <mat-error *ngIf="signupForm.get('confirmPassword').invalid">Please confirm your password</mat-error>
         </mat-form-field>
       </div>
       <div *ngIf="!step1">
@@ -58,9 +67,9 @@
         </mat-form-field>
       </div>
     </form>
-    <div>
-      <button mat-raised-button color="primary" *ngIf="step1" (click)="signInClickHandler()">Sign in</button>
-      <button mat-raised-button color="primary" *ngIf="!step1" (click)="verify()">Verify</button>
+    <div class="mt-2">
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="step1" (click)="signInClickHandler()">Sign in</button>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1" (click)="verify()">Verify</button>
     </div>
   </div>
 </div>

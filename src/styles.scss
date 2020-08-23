@@ -29,10 +29,7 @@ body {
 .spacer {
   flex: 1 1 auto;
 }
-.cartIcon{
-  display: inline-block;
-  margin-left:10px;
-  vertical-align: middle;
+.white-icon{
   color:aliceblue !important;
 }
 
@@ -43,18 +40,4 @@ body {
 
 button.mat-primary{
   background-color: #9acd32 !important;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-.mb-20 {
-  margin-bottom: 20px;
-}
-.mb-30 {
-  margin-bottom: 30px;
-}
-
-.center {
-  text-align: center;
 }

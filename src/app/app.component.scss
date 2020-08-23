@@ -1,20 +1,21 @@
-
-.active{
-  background-color:rgba(9, 30, 66, 0.25);
+.active {
+  background-color: rgba(9, 30, 66, 0.25);
 }
-
-.sidenav-item{
-    color: white;
-    font-size:14px !important; 
+.btn-label {
+  display: none;
 }
-
-.sidenav-item1:hover{
+.sidenav-item {
   color: white;
-  background-color: #FD397A;
-  font-size:16px !important; 
+  font-size: 14px !important;
 }
-mat-icon{
-  color:gray;
+
+.sidenav-item1:hover {
+  color: white;
+  background-color: #fd397a;
+  font-size: 16px !important;
+}
+mat-icon {
+  color: gray;
 }
 a {
   color: white;
@@ -26,7 +27,7 @@ main {
 }
 
 .example-sidenav {
-  background-color:#1a1a27;
+  background-color: #1a1a27;
 }
 mat-card {
   margin-bottom: 4px;
@@ -34,13 +35,12 @@ mat-card {
 
 mat-toolbar {
   overflow: hidden;
-    width: 100%;
-    min-width: 475px;
-    padding: 10px 20px 10px 10px;
-    font-size: 20px;
-    position: relative;
-    color: #FFF;
-    z-index: 1;
+  width: 100%;
+  padding: 10px 20px 10px 10px;
+  font-size: 20px;
+  position: relative;
+  color: #fff;
+  z-index: 1;
 }
 
 mat-toolbar:after {
@@ -50,7 +50,7 @@ mat-toolbar:after {
   position: absolute;
   display: block;
   width: 25%;
-  min-width: 200px;
+  min-width: 150px;
   height: 100%;
   top: 0;
   right: 0;
@@ -64,8 +64,8 @@ mat-toolbar:after {
 mat-sidenav-container.m2app-dark {
   background: black;
 }
-.hoverItem:hover{
-  color:pink
+.hoverItem:hover {
+  color: pink;
 }
 
 .app-sidenav {
@@ -74,7 +74,12 @@ mat-sidenav-container.m2app-dark {
 
 .loginSection {
   z-index: 3;
-  position: relative;
+  // position: relative;
+  button {
+    min-width: 30px;
+    padding: 0 10px 0 10px;
+    margin-left: 5px;
+  }
 }
 
 .badge {
@@ -84,22 +89,31 @@ mat-sidenav-container.m2app-dark {
   border-radius: 50%;
   width: 25px;
   height: 25px;
-  background-color: #ff0000; 
+  background-color: #ff0000;
   border: 4px solid #ff0000;
   color: #ffffff;
   margin-top: -20px;
 }
-.pagination{
+.pagination {
   display: block;
   width: 300px;
 }
 
-.mat-toolbar.mat-primary{
+.mat-toolbar.mat-primary {
   background: #9acd32;
 }
-.mat-toolbar::after{
+.mat-toolbar::after {
   background: #008000;
 }
-.footer-copyright{
+.footer-copyright {
   margin-left: 200px;
+}
+
+@media (min-width: 768px) {
+  .btn-label {
+    display: inline;
+  }
+  .mat-toolbar:after {
+    width: 250px;
+  }
 }

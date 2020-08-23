@@ -15,28 +15,48 @@
   </mat-sidenav>
 
   <mat-toolbar color="primary" class="header">
-    <button mat-button class="app-menu-button" (mouseover)="sidenav.toggle()">
-      <i class="material-icons">menu</i>
+    <button mat-icon-button class="app-menu-button" (mouseover)="sidenav.toggle()">
+      <mat-icon class="white-icon">menu</mat-icon>
     </button>
     <img src="../assets/logo_w.png" style="border-radius: 50%;">
     <!-- <div class="pull-right"><span class="ml-0"> -->
     <!-- <img class="rounded" style="width: 120px;align:pull-right" src="./assets/warriors.jpg" />
       </span></div> -->
     <span class="spacer"></span>
-    <div class="loginSection row">
-      <div class="col-md-6">
+    <div class="loginSection">
         <button mat-button *ngIf="!isLogin"  (click)="openLoginDialog()">
-          Login
+          <mat-icon class="white-icon">person</mat-icon>
+          <span class="btn-label">Login</span>
         </button>
-        <button mat-button *ngIf= "isLogin" >Hello Lokesh</button>
+        <button mat-button *ngIf="isLogin" >
+          <mat-icon class="white-icon">person</mat-icon>
+           <span class="btn-label">Hello Lokesh</span>
+        </button>
+        <button mat-button (click)="openCart()">
+          <mat-icon class="white-icon">shopping_cart</mat-icon>
+          <span class="badge" *ngIf="cartCount">{{cartCount}}</span>
+          <span class="btn-label">Basket</span>
+        </button>
+    </div>
+    <!-- <div class="loginSection row">
+      <div class="col-xs-6">
+        <button mat-button *ngIf="!isLogin"  (click)="openLoginDialog()">
+          <mat-icon class="icon" class="cartIcon">person</mat-icon>
+          <span class="btn-label">Login</span>
+        </button>
+        <button mat-button *ngIf="isLogin" >
+          <mat-icon class="icon" class="cartIcon">person</mat-icon>
+           <span class="btn-label">Hello Lokesh</span>
+        </button>
       </div>
-      <div class="col-md-6">
+      <div class="col-xs-6">
         <button mat-icon-button (click)="openCart()">
           <mat-icon class="icon" class="cartIcon">shopping_cart</mat-icon>
           <span class="badge" *ngIf="cartCount">{{cartCount}}</span>
+          <span class="btn-label">Bag</span>
         </button>
       </div>
-    </div>
+    </div> -->
   </mat-toolbar>
 
 
