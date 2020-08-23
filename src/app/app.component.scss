@@ -1,6 +1,11 @@
 .active {
   background-color: rgba(9, 30, 66, 0.25);
 }
+.app-content {
+  margin-top: 85px;
+  height: calc(100vh - 150px);
+  overflow: auto;
+}
 .btn-label {
   display: none;
 }

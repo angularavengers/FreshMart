@@ -1,0 +1,40 @@
+<div class="cart-container">
+  <h3> My Cart({{cartList.length}})</h3>
+  <div class="row">
+    <div class="col-md-7 left-card-container">
+      <mat-card>
+        <mat-card-content>
+          <div class="cart-card-header">
+            <div class="left">
+              <h5> Basket</h5> ({{cartList.length}} items)
+            </div>
+            <div class="right">
+              <h5> ₹{{totalCost}}</h5>
+            </div>
+          </div>
+          <div class="cart-card-body mt-3">
+            <div class="cart-item ml-2" *ngFor="let item of cartList">
+              <div class="row">
+                <img class="col-3" [src]="item.image">
+                <div class="col-9">
+                  <p>{{item.titlaText}} {{item.unit}}</p>
+                  <p> ₹ {{ item.price * item.qty }} </p>
+                  <div class="item-qty-steps">
+                    <app-qty-plus-minus [item]="item"> </app-qty-plus-minus>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-5 right-card-container">
+      <mat-card>
+        <mat-card-content>
+          <h5> Payment Details</h5>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

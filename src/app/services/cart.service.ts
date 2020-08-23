@@ -7,7 +7,7 @@ import { Subject, Observable } from 'rxjs';
 export class CartService {
   private cartList: any = {};
   private cartSubject: Subject<any> = new Subject();
-  public carObservable: Observable<any> = this.cartSubject.asObservable();
+  public cartObservable: Observable<any> = this.cartSubject.asObservable();
 
   constructor() { }
 
@@ -33,6 +33,10 @@ export class CartService {
   }
 
   public getCartList() {
+    // const cartList = [];
+    // Object.keys(this.cartList).forEach((v) => {
+    //   cartList.push(this.cartList[v]);
+    // });
     return this.cartList;
   }
 }

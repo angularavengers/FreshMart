@@ -18,25 +18,27 @@
     <button mat-icon-button class="app-menu-button" (mouseover)="sidenav.toggle()">
       <mat-icon class="white-icon">menu</mat-icon>
     </button>
-    <img src="../assets/logo_w.png" style="border-radius: 50%;">
+    <a routerLink="home" href="javascript:void(0)">
+      <img src="../assets/logo_w.png" style="border-radius: 50%;">
+    </a>
     <!-- <div class="pull-right"><span class="ml-0"> -->
     <!-- <img class="rounded" style="width: 120px;align:pull-right" src="./assets/warriors.jpg" />
       </span></div> -->
     <span class="spacer"></span>
     <div class="loginSection">
-        <button mat-button *ngIf="!isLogin"  (click)="openLoginDialog()">
-          <mat-icon class="white-icon">person</mat-icon>
-          <span class="btn-label">Login</span>
-        </button>
-        <button mat-button *ngIf="isLogin" >
-          <mat-icon class="white-icon">person</mat-icon>
-           <span class="btn-label">Hello Lokesh</span>
-        </button>
-        <button mat-button (click)="openCart()">
-          <mat-icon class="white-icon">shopping_cart</mat-icon>
-          <span class="badge" *ngIf="cartCount">{{cartCount}}</span>
-          <span class="btn-label">Basket</span>
-        </button>
+      <button mat-button *ngIf="!isLogin" (click)="openLoginDialog()">
+        <mat-icon class="white-icon">person</mat-icon>
+        <span class="btn-label">Login</span>
+      </button>
+      <button mat-button *ngIf="isLogin">
+        <mat-icon class="white-icon">person</mat-icon>
+        <span class="btn-label">Hello Lokesh</span>
+      </button>
+      <button mat-button (click)="openCart()">
+        <mat-icon class="white-icon">shopping_cart</mat-icon>
+        <span class="badge" *ngIf="cartCount">{{cartCount}}</span>
+        <span class="btn-label">Basket</span>
+      </button>
     </div>
     <!-- <div class="loginSection row">
       <div class="col-xs-6">

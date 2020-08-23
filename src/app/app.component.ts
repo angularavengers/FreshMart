@@ -4,6 +4,7 @@ import { CartService } from './services/cart.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -54,24 +55,30 @@ export class AppComponent {
     return this.authService.isLogin;
   }
 
-  constructor( private authService: AuthService,
+  constructor(private authService: AuthService,
     private cartServicce: CartService,
+    private router: Router,
     private dialog: MatDialog) {
-    this.cartServicce.carObservable.subscribe((cartData) => {
+    this.cartServicce.cartObservable.subscribe((cartData) => {
       this.cartCount = Object.keys(cartData).length;
     })
   }
 
-  openLoginDialog() {
+  openLoginDialog(isFromCart?: boolean) {
     const dialogRef = this.dialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if (isFromCart) {
+        this.openCart();
+      }
     });
   }
 
   openCart() {
     if (!this.authService.isLogin) {
-      this.openLoginDialog();
+      this.openLoginDialog(true);
+    } else {
+      this.router.navigate(['cart']);
     }
   }
 

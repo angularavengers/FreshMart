@@ -16,6 +16,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { QtyPlusMinusComponent } from './qty-plus-minus/qty-plus-minus.component';
 import { NumberOnlyDirective } from './directives/number-only.directive';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {path: 'caronaHelpLine' , component: HomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'petFood' , component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'cart', component: CartComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -44,7 +46,8 @@ const routes: Routes = [
       HomeComponent,
       LoginComponent,
       QtyPlusMinusComponent,
-      NumberOnlyDirective],
+      NumberOnlyDirective,
+      CartComponent],
   entryComponents: [],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],
