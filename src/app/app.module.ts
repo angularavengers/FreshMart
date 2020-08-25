@@ -11,12 +11,13 @@ import { AppComponent } from './app.component';
 import { ImportantContactComponent } from './important-contact/important-contact.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { QtyPlusMinusComponent } from './qty-plus-minus/qty-plus-minus.component';
 import { NumberOnlyDirective } from './directives/number-only.directive';
 import { CartComponent } from './cart/cart.component';
+import { Authguard } from './services/auth-guard.servicec';
 
 const routes: Routes = [
   {path: 'caronaHelpLine' , component: HomeComponent},
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path: 'petFood' , component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'cart', component: CartComponent},
+  {path: 'cart', component: CartComponent, canActivate: [ Authguard ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

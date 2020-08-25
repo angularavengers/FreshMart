@@ -18,7 +18,7 @@ export class NumberOnlyDirective {
     'Copy',
     'Paste',
   ];
-  constructor(private el: ElementRef) { }
+  constructor(private _el: ElementRef) { }
   @HostListener('keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
     if (
@@ -52,7 +52,7 @@ export class NumberOnlyDirective {
     event.preventDefault();
     const textData = event.dataTransfer
       .getData('text').replace(/\D/g, '');
-    this.el.nativeElement.inputElement.focus();
+    this._el.nativeElement.inputElement.focus();
     document.execCommand('insertText', false, textData);
   }
 }

@@ -13,10 +13,10 @@
     <form [formGroup]="loginForm">
       <mat-form-field class="mobile-number">
         <mat-label>Mobile Number</mat-label>
-        <input numberOnly formControlName="mobile" matInput>
+        <input numberOnly formControlName="phoneNumber" matInput>
         <span matPrefix>+91&nbsp;</span>
-        <mat-error *ngIf="loginForm.get('mobile').errors?.required">Please enter your mobile number</mat-error>
-        <mat-error *ngIf="loginForm.get('mobile').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
+        <mat-error *ngIf="loginForm.get('phoneNumber').errors?.required">Please enter your mobile number</mat-error>
+        <mat-error *ngIf="loginForm.get('phoneNumber').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
       </mat-form-field>
       <a mat-button  href="javascript:void(0)" (click)="setStep1()" *ngIf="!step1">Change</a>
       <div [formGroup]="signupForm" *ngIf="!step1 && !isRegisteredMobile">
@@ -58,18 +58,29 @@
           <mat-error *ngIf="signupForm.get('confirmPassword').invalid">Please confirm your password</mat-error>
         </mat-form-field>
       </div>
-      <div *ngIf="!step1">
+      <mat-form-field class="mt-20" *ngIf="!step1 && isRegisteredMobile">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput [type]="passwordHideFlag ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="passwordHideFlag = !passwordHideFlag"
+          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{!passwordHideFlag ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password').errors?.required">Please enter your password</mat-error>
+        <mat-error *ngIf="loginForm.get('password').errors?.incorrectPassword">{{loginForm.get('password').errors.incorrectPassword}}</mat-error>
+      </mat-form-field>
+      <!-- <div *ngIf="!step1">
         <h5>OTP Verification</h5>
         <mat-form-field>
           <mat-label>Enter OTP received on mobile</mat-label>
           <input formControlName="otp" matInput>
           <mat-error *ngIf="loginForm.get('otp').invalid">Please enter the OTP yoyu just received on your mobile</mat-error>
         </mat-form-field>
-      </div>
+      </div> -->
     </form>
     <div class="mt-2">
-      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="step1" (click)="signInClickHandler()">Sign in</button>
-      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1" (click)="verify()">Verify</button>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="step1 " (click)="signInClickHandler()">Sign in</button>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1 && isRegisteredMobile" (click)="verify()">Verify</button>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1 && !isRegisteredMobile" (click)="signUpUser()">Sign up</button>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { sideBarPath, SideBar } from './const/side-nav';
+import { SideBar } from './const/side-nav';
 import { CartService } from './services/cart.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -50,24 +50,26 @@ export class AppComponent {
       path: '/home'
     }
   ];
+  userData: any;
+  isLogin: boolean;
 
-  public get isLogin() {
-    return this.authService.isLogin;
-  }
-
-  constructor(private authService: AuthService,
-    private cartServicce: CartService,
-    private router: Router,
-    private dialog: MatDialog) {
-    this.cartServicce.cartObservable.subscribe((cartData) => {
+  constructor(private _authService: AuthService,
+    private _cartService: CartService,
+    private _router: Router,
+    private _dialog: MatDialog) {
+    this._cartService.cartObservable.subscribe((cartData) => {
       this.cartCount = Object.keys(cartData).length;
     })
   }
 
   openLoginDialog(isFromCart?: boolean) {
-    const dialogRef = this.dialog.open(LoginComponent);
+    const dialogRef = this._dialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if (this._authService.isLogin) {
+        this.userData = this._authService.getUserData();
+        this.isLogin = true;
+      }
       if (isFromCart) {
         this.openCart();
       }
@@ -75,10 +77,10 @@ export class AppComponent {
   }
 
   openCart() {
-    if (!this.authService.isLogin) {
+    if (!this._authService.isLogin) {
       this.openLoginDialog(true);
     } else {
-      this.router.navigate(['cart']);
+      this._router.navigate(['cart']);
     }
   }
 

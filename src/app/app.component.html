@@ -32,7 +32,7 @@
       </button>
       <button mat-button *ngIf="isLogin">
         <mat-icon class="white-icon">person</mat-icon>
-        <span class="btn-label">Hello Lokesh</span>
+        <span class="btn-label">Hello {{userData.fName}}</span>
       </button>
       <button mat-button (click)="openCart()">
         <mat-icon class="white-icon">shopping_cart</mat-icon>
