@@ -49,9 +49,14 @@ export class LoginComponent implements OnInit {
     this.step1 = false;
     this.loginForm.get('mobile').disable();
     this.loginForm.get('otp').enable();
-    if (!this.isRegisteredMobile) {
-      this.loginForm.get('signUpForm').enable();
-    }
+    this.authService.loginUser(this.loginForm.get('mobile').value).subscribe((res) => {
+      if (res.user && res.user.isVerified) {
+        this.isRegisteredMobile = res.user.isVerified;
+        this.loginForm.get('signUpForm').disable();
+      } else {
+        this.loginForm.get('signUpForm').enable();
+      }
+    })
   }
 
   setStep1() {
