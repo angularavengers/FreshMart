@@ -92,6 +92,7 @@ export class LoginComponent implements OnInit {
     this._authService.signUpUser(data).subscribe((resp) => {
       console.log(resp);
       this._authService.isLogin = true;
+      this._authService.setUserData(resp);
       if (this._dialogRef) {
         this._dialogRef.close();
       }
