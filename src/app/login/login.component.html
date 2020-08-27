@@ -57,6 +57,12 @@
           </button>
           <mat-error *ngIf="signupForm.get('confirmPassword').invalid">Please confirm your password</mat-error>
         </mat-form-field>
+          <h5>OTP Verification</h5>
+          <mat-form-field>
+            <mat-label>Enter OTP received on mobile</mat-label>
+            <input formControlName="otp" matInput>
+            <mat-error *ngIf="signupForm.get('otp').invalid">Please enter the OTP you just received on your mobile</mat-error>
+          </mat-form-field>
       </div>
       <mat-form-field class="mt-20" *ngIf="!step1 && isRegisteredMobile">
         <mat-label>Password</mat-label>
@@ -68,19 +74,11 @@
         <mat-error *ngIf="loginForm.get('password').errors?.required">Please enter your password</mat-error>
         <mat-error *ngIf="loginForm.get('password').errors?.incorrectPassword">{{loginForm.get('password').errors.incorrectPassword}}</mat-error>
       </mat-form-field>
-      <!-- <div *ngIf="!step1">
-        <h5>OTP Verification</h5>
-        <mat-form-field>
-          <mat-label>Enter OTP received on mobile</mat-label>
-          <input formControlName="otp" matInput>
-          <mat-error *ngIf="loginForm.get('otp').invalid">Please enter the OTP yoyu just received on your mobile</mat-error>
-        </mat-form-field>
-      </div> -->
     </form>
     <div class="mt-2">
       <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="step1 " (click)="signInClickHandler()">Sign in</button>
       <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1 && isRegisteredMobile" (click)="verify()">Verify</button>
-      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" *ngIf="!step1 && !isRegisteredMobile" (click)="signUpUser()">Sign up</button>
+      <button mat-raised-button color="primary" [disabled]="signupForm.invalid" *ngIf="!step1 && !isRegisteredMobile" (click)="signUpUser()">Sign up</button>
     </div>
   </div>
 </div>

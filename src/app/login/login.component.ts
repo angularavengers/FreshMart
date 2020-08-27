@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
         lName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required],
+        otp: ['', Validators.required]
       })
     });
     this.setStep1();
@@ -56,10 +57,8 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('signUpForm').enable();
       }
     })).subscribe((resp) => {
-      // if (resp.isUserRegisted === false) {
-      // this.isRegisteredMobile = false;
-      // } else {
-        this.isRegisteredMobile = true;
+        this.isRegisteredMobile = resp.isUserRegisted;
+        /* todo need to uncomment*/
         this._authService.setUserData(resp.user);
         this.loginForm.get('password').enable();
       // }
@@ -90,9 +89,8 @@ export class LoginComponent implements OnInit {
     const data = { ...this.signupForm.value, phoneNumber: this.loginForm.get('phoneNumber').value }
     delete data.confirmPassword;
     this._authService.signUpUser(data).subscribe((resp) => {
-      console.log(resp);
       this._authService.isLogin = true;
-      this._authService.setUserData(resp);
+      this._authService.setUserData(resp.data);
       if (this._dialogRef) {
         this._dialogRef.close();
       }
