@@ -8,6 +8,7 @@ import { CartService } from 'app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cartList: any[]
+
   get totalCost(): number {
     return this.cartList.reduce((total, v) => {
       return total + (v.qty * v.price);
@@ -18,9 +19,7 @@ export class CartComponent implements OnInit {
     const cartList = this.cartService.getCartList();
     this.updateCartList(cartList);
     this.cartService.cartObservable.subscribe((data) => {
-      this.cartList = Object.keys(data).map((v) => {
-        return data[v];
-      });
+      this.updateCartList(data);
     });
     // this.cartList = [{
     //   titlaText: 'Onion',

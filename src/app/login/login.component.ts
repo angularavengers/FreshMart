@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _authService: AuthService,
     private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef<LoginComponent>,) {
+    private _dialogRef: MatDialogRef<LoginComponent>) {
       this.initForm();
   }
 

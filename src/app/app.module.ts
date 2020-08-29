@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppMaterialModule } from './app.material.module';
 import { AppComponent } from './app.component';
 import { ImportantContactComponent } from './important-contact/important-contact.component';
@@ -18,6 +17,8 @@ import { QtyPlusMinusComponent } from './qty-plus-minus/qty-plus-minus.component
 import { NumberOnlyDirective } from './directives/number-only.directive';
 import { CartComponent } from './cart/cart.component';
 import { Authguard } from './services/auth-guard.servicec';
+import { AddressComponent } from './address/address.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 const routes: Routes = [
   {path: 'caronaHelpLine' , component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cart', component: CartComponent, canActivate: [ Authguard ]},
+  {path: 'order-summary', component: OrderSummaryComponent, canActivate: [ Authguard ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -48,8 +50,10 @@ const routes: Routes = [
       LoginComponent,
       QtyPlusMinusComponent,
       NumberOnlyDirective,
-      CartComponent],
-  entryComponents: [],
+      CartComponent,
+      OrderSummaryComponent,
+      AddressComponent],
+  entryComponents: [AddressComponent],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],
   providers: []

@@ -43,3 +43,32 @@ body {
 button.mat-primary{
   background-color: #9acd32 !important;
 }
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;;
+}
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.position-absolute-bottom{
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+}
+.position-relative {
+  position: relative;
+}
+.width-100 {
+  width: 100%;
+}
