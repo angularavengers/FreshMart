@@ -1,11 +1,9 @@
 import { MatIconModule } from '@angular/material';
 import 'hammerjs';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppMaterialModule } from './app.material.module';
 import { AppComponent } from './app.component';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -20,6 +18,8 @@ import { CartComponent } from './cart/cart.component';
 import { Authguard } from './services/auth-guard.servicec';
 import { ImagepopupComponent } from './imagepopup/imagepopup.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AddressComponent } from './address/address.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -27,6 +27,7 @@ const routes: Routes = [
   {path: 'aboutus', component: AboutUsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cart', component: CartComponent, canActivate: [ Authguard ]},
+  {path: 'order-summary', component: OrderSummaryComponent, canActivate: [ Authguard ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -50,8 +51,10 @@ const routes: Routes = [
       NumberOnlyDirective,
       CartComponent,
       ImagepopupComponent,
-      ContactUsComponent],
-  entryComponents: [ImagepopupComponent],
+      ContactUsComponent,
+      OrderSummaryComponent,
+      AddressComponent],
+  entryComponents: [ImagepopupComponent, AddressComponent],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],
   providers: []

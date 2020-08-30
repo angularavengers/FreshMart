@@ -1,0 +1,89 @@
+<div class="order-summary-container">
+  <h3>Order Summary</h3>
+  <div class="row">
+    <div class="left-card-container col-md-7">
+      <div class="delivery-details">
+        <mat-card>
+          <mat-card-content>
+            <div class="delivery-card-header border-bottom pb-3">
+              <h5>Select Delivery Address</h5>
+              <a mat-stroked-button (click)="addNewAddress()">New Address</a>
+            </div>
+            <div class="card-body">
+              <div class="delivery-address">
+                <div class="address-row" *ngFor="let address of addressList">
+                  <div>
+                    <input type="radio" checked="checked">
+                  </div>
+                  <div class="address-content pl-3">
+                    <div class="flex-align-center">
+                      <h5>{{address.firstName}} {{address.lastName}}</h5>
+                      <a (click)="changeAddress(address)">
+                        Edit
+                      </a>
+                    </div>
+                    <p>{{address.addressLine1}}</p>
+                    <p>{{address.addressLine2}}</p>
+                    <p>{{address.city}} {{address.state}}</p>
+                    <p>{{address.pincode}}</p>
+                    <p>Landmark : {{address.landMark}}</p>
+                    <p>Phone Number : +91-{{address.phoneNumber}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="basket-details">
+        <mat-card>
+          <mat-card-content>
+            <h5 class="border-bottom pb-3">Basket</h5>
+            <div class="basket-card-header">
+              <div class="flex-align-center width-100">
+                <h6> Expected Delivery</h6>
+                <h6 class="delivery-date"> {{ deliveryDate | date : 'fullDate' }}</h6>
+              </div>
+              <!-- <div class="right">
+                <p>Total ({{cartList.length}} items)</p>
+                <h6> ₹{{totalCost}}</h6>
+              </div> -->
+            </div>
+            <div class="cart-card-body mt-3">
+              <div class="cart-item ml-2" *ngFor="let item of cartList">
+                <div class="row">
+                  <img class="col-4 col-md-3 product-image" [src]="item.image">
+                  <div class="col-md-9 col-8">
+                    <h6>{{item.titlaText}} {{item.unit}}</h6>
+                    <h6> ₹ {{ item.price * item.qty }} </h6>
+                    <h6> ₹ {{ item.qty }} </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="right-card-container col-md-5">
+      <mat-card>
+        <mat-card-content>
+          <h5 class="border-bottom  pb-3"> Payment Details</h5>
+          <div class="row">
+            <h6 class="col-md-9 col-8"> Basket Total</h6>
+            <h6 class="col-md-3 col-4"> ₹{{totalCost}}</h6>
+          </div>
+          <div class="row mt-3">
+            <h6 class="col-md-9 col-8"> Total Amount</h6>
+            <h6 class="col-md-3 col-4"> ₹{{totalCost}}</h6>
+          </div>
+          <div>
+            <div class="flex-justify-center mt-3">
+              <button mat-raised-button class="btn-pay" color="primary" routerLink="/home">Pay Now</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

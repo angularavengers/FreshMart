@@ -4,6 +4,10 @@
     & > .row {
         margin-right: 0;
     }
+    .empty-cart {
+        width: 100%;
+        margin: 15px;
+    }
     .left-card-container {
         .cart-card-header {
             display: flex;
@@ -17,26 +21,23 @@
             &:last-child {
                 border-bottom-style: none;
             }
-            p {
-                font-weight: bold;
-            }
-            .item-details {
-                margin-left: 10px;
-                width: 100%;
-                p {
-                    margin: 5px 0;
-                }
-            }
-            .item-qty-steps {
-                margin-left: auto;
-                width: 100px;
-            }
         }
         h5 {
             display: inline;
         }
     }
     mat-card {
-        min-height: 225px;
+        min-height: 200px;
+        margin-top: 20px;
+    }
+    
+    .checkout-btn {
+        width: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-image {
+        max-width: 145px;
     }
 }

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="address-header">
+    <h4>Address</h4>
+  </div>
+  <form [formGroup]="addressForm">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstName" matInput>
+      <mat-error *ngIf="addressForm.get('lastName').errors?.required">Please enter First Name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input formControlName="lastName" matInput>
+      <mat-error *ngIf="addressForm.get('firstName').errors?.required">Please enter Last Name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address Line 1</mat-label>
+      <input formControlName="addressLine1" matInput>
+      <mat-error *ngIf="addressForm.get('addressLine1').errors?.required">Please enter address line 1</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address Line 2</mat-label>
+      <input formControlName="addressLine2" matInput>
+      <!-- <mat-error *ngIf="addressForm.get('addressLine2').errors?.required">Please enter address line 2</mat-error> -->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Landmark</mat-label>
+      <input formControlName="landMark" matInput>
+      <mat-error *ngIf="addressForm.get('landMark').errors?.required">Please enter Landmark</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input formControlName="city" matInput>
+      <mat-error *ngIf="addressForm.get('city').errors?.required">Please enter City</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>State</mat-label>
+      <input formControlName="state" matInput>
+      <mat-error *ngIf="addressForm.get('state').errors?.required">Please enter State</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Pin Code</mat-label>
+      <input formControlName="pincode" matInput>
+      <mat-error *ngIf="addressForm.get('pincode').errors?.required">Please Pin Code</mat-error>
+    </mat-form-field>
+    <mat-form-field class="mobile-number">
+      <mat-label>Mobile Number</mat-label>
+      <input numberOnly formControlName="phoneNumber" matInput>
+      <span matPrefix>+91&nbsp;</span>
+      <mat-error *ngIf="addressForm.get('phoneNumber').errors?.required">Please enter your mobile number</mat-error>
+      <mat-error *ngIf="addressForm.get('phoneNumber').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
+    </mat-form-field>
+    <div class="btn-wrapper">
+      <button mat-raised-button (click) ="closeDialog()">Cancel</button>
+      <button mat-raised-button class="ml-3" color="primary" (click) ="saveAddress()">Save</button>
+    </div>
+  </form>
+</div>

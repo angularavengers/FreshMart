@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { IUser } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,13 @@ export class AppComponent implements OnInit{
     private _dialog: MatDialog) {
     this._cartService.cartObservable.subscribe((cartData) => {
       this.cartCount = Object.keys(cartData).length;
-    })
+    });
+    this._authService.authObservable.subscribe((data) => {
+      if (this._authService.isLogin) {
+        this.userData = this._authService.getUserData();
+        this.isLogin = true;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -39,10 +46,6 @@ export class AppComponent implements OnInit{
     const dialogRef = this._dialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if (this._authService.isLogin) {
-        this.userData = this._authService.getUserData();
-        this.isLogin = true;
-      }
       if (isFromCart) {
         this.openCart();
       }
