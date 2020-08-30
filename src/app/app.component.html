@@ -2,14 +2,27 @@
   <mat-sidenav #sidenav fixedInViewport='true' mode="side" mode="over" class="example-sidenav"
     [ngStyle]="{ 'width.em': sidenavWidth }" opened="false" (mouseenter)="increase()">
     <mat-nav-list class="hoverItem">
-      <ng-container *ngFor='let item of sideBarPath'>
+      <ng-container *ngFor='let item of sideBarPath; let item1'>
         <mat-list-item [routerLink]="item.path" routerLinkActive="active" class="sidenav-item1"
-          (click)="decrease(sidenav)">
-          <mat-icon md-list-icon>{{item.icon}}</mat-icon>
-          <div *ngIf="sidenavWidth > 4" class="sidenav-item ml-2">
-            <a>{{item.title}}</a>
+          >
+          <mat-icon md-list-icon [style.color]="item.iconColor?item.iconColor:''">{{item.icon}}</mat-icon>
+          <div *ngIf="sidenavWidth > 4" class="sidenav-item ml-2 mt-2">
+            <a (click)="navItemClick(item1)">{{item.title}}</a>
           </div>
+          <mat-icon md-list-icon class="mt-1 ml-5" 
+              *ngIf="item.isChildVisible && item.isMore" (click)="toggleMoreButton(item1)">expand_more</mat-icon>
+          <mat-icon md-list-icon class="mt-1 ml-5" 
+               *ngIf="item.isChildVisible && !item.isMore" (click)="toggleMoreButton(item1)">expand_less</mat-icon>
         </mat-list-item>
+        <div class="child-nav-wrapper" *ngIf="item.isChildVisible && !item.isMore"> 
+          <ng-container *ngFor="let child of item.isChildVisible">
+            <div mat-line class="childItem">
+              <img class="avatar" [src]="child.icon">
+              <span class="childNavItem">{{child.title}}</span>
+           </div>
+          </ng-container>
+          
+         </div>
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
@@ -21,9 +34,6 @@
     <a routerLink="home" href="javascript:void(0)">
       <img src="../assets/logo_w.png" style="border-radius: 50%;">
     </a>
-    <!-- <div class="pull-right"><span class="ml-0"> -->
-    <!-- <img class="rounded" style="width: 120px;align:pull-right" src="./assets/warriors.jpg" />
-      </span></div> -->
     <span class="spacer"></span>
     <div class="loginSection">
       <button mat-button *ngIf="!isLogin" (click)="openLoginDialog()">
@@ -60,17 +70,6 @@
       </div>
     </div> -->
   </mat-toolbar>
-
-
-  <!-- <mat-toolbar class="mat-elevation-z5" color="primary">
-    <div class="float-left"><span class="ml-0"><img  src="./assets/warriors.jpg" 
-       style="width:120px;margin-left: -10px;"></span></div>
-    <h5 class="ml-5">The Warriors (bhopal city information portal) </h5>
-    <span class="spacer"></span>
-    <span class="spacer"></span>
-    <span class="spacer"></span>
-  </mat-toolbar> -->
-
   <div class="app-content">
     <router-outlet></router-outlet>
   </div>
@@ -86,5 +85,6 @@
     </footer>
     <!-- Footer -->
   </mat-toolbar>
-
+ 
 </mat-sidenav-container>
+<app-imagepopup ></app-imagepopup>

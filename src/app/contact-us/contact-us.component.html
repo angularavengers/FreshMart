@@ -1,0 +1,53 @@
+
+<mat-card class="container" *ngIf="!isSubmit">
+<div class="contact-form" >
+  <form [formGroup]="contactUsForm" class="display-center" (submit)="handleSubmit()">
+    <h3>Drop Us a Message</h3>
+    <h5>We just started our Journey and your feedback is appreciated.</h5>
+        <div class="row">
+            <mat-form-field class="col-md-5">
+              <input formControlName="fName" matInput type="text" placeholder="Your Name *" value="" />
+            </mat-form-field>
+            <mat-form-field class="col-md-5">
+              <input formControlName="lName" matInput type="text" placeholder="Last Name *" value="" />
+            </mat-form-field>
+          </div>
+         <div class="row"> 
+          <mat-form-field class="col-md-10">
+            <input formControlName="email" matInput type="text" placeholder="Your Email *" value="" />
+          </mat-form-field>
+        </div> 
+          <div class="row">
+            <mat-form-field class="col-md-10">
+            <input formControlName="phoneNumber" matInput type="text" name="txtPhone" placeholder="Your Phone Number *"
+              value="" />
+            <span matPrefix>+91&nbsp;</span>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10">
+            <input formControlName="adress" matInput placeholder="Adress" />
+          </mat-form-field>
+          </div>
+        <div class="row">
+          <mat-form-field class="col-md-10">
+            <textarea formControlName="usermessage" matInput placeholder="Your Message *" ></textarea>
+        </mat-form-field>
+        </div>
+        <div class="mt-4">
+          <button  mat-raised-button [disabled]="contactUsForm.invalid"
+           class="submitButton text-white ml-2" >Send Feedback</button>
+          <button mat-raised-button color="warn" class="ml-2" (click)="resetForm()">Reset</button>
+        </div>
+  </form>
+</div>
+</mat-card>
+
+
+<mat-card class="containerPanel" *ngIf="isSubmit">
+  <div class="thanksPanel" >
+    <h5 class="thanksPanelText">Thank you for your feedback, we will get back to you shortly. </h5>
+    <img class="bannerimage" src="../../assets/offer/000.png">
+  </div>
+  </mat-card>
+

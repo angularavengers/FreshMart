@@ -8,25 +8,25 @@ import { Observable } from 'rxjs';
 export class AuthService {
   public isLogin: boolean;
   private _userData: any;
-
+  public baseURL = 'https://freshmart-s.herokuapp.com';
+  
   constructor(private _http: HttpClient) { }
-  // public baseURL= 'http://localhost:3000'
-  // constructor(private _http: HttpClient) { }
+// constructor(private _http: HttpClient) { }
   
   // loginUser(phoneNumber: string) {
   //   return this._http.post<any>(`${this.baseURL}/users/login`, {phoneNumber})
   // };
 
   checkUser(data: any): Observable<any> {
-    return this._http.post('api/users/login', data);
+    return this._http.post(`${this.baseURL}/users/login`, data);
   }
 
   validateUser(data: any): Observable<any> {
-    return this._http.post('api/users/verifyUser', data);
+    return this._http.post(`${this.baseURL}/users/verifyUser`, data);
   }
 
   signUpUser(data: any): Observable<any> {
-    return this._http.post('api/users/signUp', data);
+    return this._http.post(`${this.baseURL}/users/signUp`, data);
   }
 
   getAllUsers(): Observable<any> {
