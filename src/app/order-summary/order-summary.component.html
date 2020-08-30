@@ -1,5 +1,8 @@
 <div class="order-summary-container">
-  <h3>Order Summary</h3>
+  <div class="flex-align-center header-wrapper">
+    <h3>Order Summary</h3>
+    <app-order-steps></app-order-steps>
+  </div>
   <div class="row">
     <div class="left-card-container col-md-7">
       <div class="delivery-details">
@@ -13,7 +16,7 @@
               <div class="delivery-address">
                 <div class="address-row" *ngFor="let address of addressList">
                   <div>
-                    <input type="radio" checked="checked">
+                    <input type="radio" [value]="address._id" [(ngModel)]="deliveryAddress">
                   </div>
                   <div class="address-content pl-3">
                     <div class="flex-align-center">
@@ -27,7 +30,7 @@
                     <p>{{address.city}} {{address.state}}</p>
                     <p>{{address.pincode}}</p>
                     <p>Landmark : {{address.landMark}}</p>
-                    <p>Phone Number : +91-{{address.phoneNumber}}</p>
+                    <p>Phone Number : +91-{{address.delPhoneNumber}}</p>
                   </div>
                 </div>
               </div>

@@ -72,3 +72,11 @@ button.mat-primary{
 .width-100 {
   width: 100%;
 }
+.mat-menu-panel {
+  width: 165px;
+  button {
+    line-height: 30px;
+    height: 30px;
+    outline: none;
+  }
+}

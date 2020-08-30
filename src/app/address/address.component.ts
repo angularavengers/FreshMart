@@ -11,6 +11,7 @@ import { AuthService } from 'app/services/auth.service';
 })
 export class AddressComponent implements OnInit {
   addressForm: FormGroup;
+  isEdit: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) private _data: any,
     private _fb: FormBuilder,
@@ -34,10 +35,11 @@ export class AddressComponent implements OnInit {
       state: [{value: 'Madhya Pradesh', disabled: true}, Validators.required],
       pincode: [{value: '412101', disabled: true}, [Validators.required]],
       isdefault: [false],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      delPhoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
     if (this._data) {
         this.addressForm.patchValue(this._data);
+        this.isEdit = true;
     }
   }
 
@@ -46,7 +48,26 @@ export class AddressComponent implements OnInit {
   }
 
   saveAddress() {
-    this._httpService.post('api/users/edituserAdress', this._authService.getUserData()).subscribe((resp => {
+    const address = {
+      ...this.addressForm.value,
+      phoneNumber: this._authService.getUserData().phoneNumber
+    };
+    this._httpService.post('api/users/addUserAddress', address).subscribe((resp => {
+      this._authService.setUserData(resp.updatedrecord);
+      this.closeDialog();
+      console.log(resp);
+    }));
+  }
+
+  updateAddress() {
+    const address = {
+      ...this.addressForm.value,
+      addressId:this._data._id,
+      phoneNumber: this._authService.getUserData().phoneNumber
+    };
+    this._httpService.post('api/users/updateUserAddress', address).subscribe((resp => {
+      this._authService.setUserData(resp.updatedrecord);
+      this.closeDialog();
       console.log(resp);
     }));
   }

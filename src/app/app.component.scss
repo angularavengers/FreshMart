@@ -2,7 +2,8 @@
   background-color: rgba(9, 30, 66, 0.25);
 }
 .app-content {
-  margin-top: 85px;
+  margin-top: 64px;
+  padding-top: 15px;
   height: calc(100vh - 150px);
   overflow: auto;
 }
@@ -107,10 +108,14 @@ mat-sidenav-container.m2app-dark {
 .loginSection {
   z-index: 3;
   // position: relative;
+  &>div {
+    display: inline;
+  }
   button {
     min-width: 30px;
     padding: 0 10px 0 10px;
     margin-left: 5px;
+    outline: none;
   }
 }
 
@@ -141,6 +146,7 @@ mat-sidenav-container.m2app-dark {
   margin-left: 550px;
   font-size: 14px;
 }
+
 
 @media (min-width: 768px) {
   .btn-label {

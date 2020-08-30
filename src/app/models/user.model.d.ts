@@ -18,5 +18,5 @@ export interface IAddress {
     state: string;
     pincode: string,
     isdefault: boolean;
-    phoneNumber: string;
+    delPhoneNumber: string;
 }

@@ -1,5 +1,8 @@
 <div class="cart-container">
-  <h3> My Cart({{cartList.length}})</h3>
+  <div class="flex-align-center header-wrapper">
+    <h3> My Basket({{cartList.length}})</h3>
+    <app-order-steps *ngIf="cartList.length"></app-order-steps>
+  </div>
   <div class="row" *ngIf="cartList.length">
     <div class="col-md-7 left-card-container">
       <mat-card>
@@ -35,14 +38,19 @@
           <h5 class="border-bottom pb-3"> Total </h5>
           <div class="row">
             <h6 class="col-8">Basket Total</h6>
-            <h6 class="col-4">₹ {{ totalCost }} </h6>
+            <h6 class="col-4"><div class="text-right mr-3">₹ {{ totalCost }}</div></h6>
           </div>
           <div class="row">
             <h6 class="col-8">Delivery Charges</h6>
-            <h6 class="col-4">₹ 0 </h6>
+            <h6 class="col-4"><div class="text-right mr-3">₹ 0</div> </h6>
           </div>
-          <div class="position-absolute-bottom">
-            <div class="flex-justify-center pr-5">
+          <div class=" border-bottom"></div>
+          <div class="row mt-2">
+            <h5 class="col-8">Total Amount</h5>
+            <h5 class="col-4"><div class="text-right mr-3">₹ {{ totalCost }} </div></h5>
+          </div>
+          <div>
+            <div class="flex-justify-center mt-3">
               <button mat-raised-button class="checkout-btn" color="primary" routerLink="/order-summary">Checkout</button>
             </div>
           </div>

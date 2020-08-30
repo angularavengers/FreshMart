@@ -36,8 +36,22 @@
     }
 }
 
+.header-wrapper {
+    flex-direction: column-reverse;
+    h3 {
+        margin-top: 10px;
+    }
+}
+
 @media (min-width: 768px) {
     .product-image {
         max-width: 145px;
+    }
+    
+    .header-wrapper {
+        flex-direction: row;
+        h3 {
+            margin-top: 0;
+        }
     }
 }

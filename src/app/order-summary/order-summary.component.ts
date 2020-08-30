@@ -14,21 +14,27 @@ export class OrderSummaryComponent implements OnInit {
   cartList: any[]
   addressList: IAddress[];
   deliveryDate: Date = new Date((new Date()).getTime() + 86400000);
+  deliveryAddress: string;
   
   get totalCost(): number {
-    return this.cartList.reduce((total, v) => {
+    return this.cartList && this.cartList.reduce((total, v) => {
       return total + (v.qty * v.price);
     }, 0)
   };
 
-  constructor(private cartService: CartService,
-    private authService: AuthService,
+  constructor(private _cartService: CartService,
+    private _authService: AuthService,
     private _dialog: MatDialog) {
-    this.addressList = this.authService.getUserData().address;
-    const cartList = this.cartService.getCartList();
-    this.updateCartList(cartList);
-    this.cartService.cartObservable.subscribe((data) => {
-      this.updateCartList(data);
+    this._cartService.cartObservable.subscribe((data) => {
+      if (data) {
+        this.updateCartList(data);
+      }
+    });
+    
+    this._authService.authObservable.subscribe((data) => {
+      if (data) {
+        this.addressList = this._authService.getUserData().address;
+      }
     });
   }
 

@@ -40,10 +40,15 @@
         <mat-icon class="white-icon">person</mat-icon>
         <span class="btn-label">Login</span>
       </button>
-      <button mat-button *ngIf="isLogin">
-        <mat-icon class="white-icon">person</mat-icon>
-        <span class="btn-label">Hello {{userData.fName}}</span>
-      </button>
+      <div *ngIf="isLogin">
+        <button mat-button [matMenuTriggerFor]="profileMenu">
+          <mat-icon class="white-icon">person</mat-icon>
+          <span class="btn-label">Hello {{userData.fName}}</span>
+        </button>
+        <mat-menu #profileMenu="matMenu" yPosition="below" overlapTrigger="false">
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
       <button mat-button (click)="openCart()">
         <mat-icon class="white-icon">shopping_cart</mat-icon>
         <span class="badge" *ngIf="cartCount">{{cartCount}}</span>

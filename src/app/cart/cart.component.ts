@@ -7,19 +7,19 @@ import { CartService } from 'app/services/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartList: any[]
+  cartList: any[] = [];
 
   get totalCost(): number {
-    return this.cartList.reduce((total, v) => {
+    return this.cartList.length && this.cartList.reduce((total, v) => {
       return total + (v.qty * v.price);
     }, 0)
   };
 
   constructor(private cartService: CartService) {
-    const cartList = this.cartService.getCartList();
-    this.updateCartList(cartList);
     this.cartService.cartObservable.subscribe((data) => {
-      this.updateCartList(data);
+      if (data) {
+        this.updateCartList(data);
+      }
     });
     // this.cartList = [{
     //   titlaText: 'Onion',

@@ -45,14 +45,15 @@
     </mat-form-field>
     <mat-form-field class="mobile-number">
       <mat-label>Mobile Number</mat-label>
-      <input numberOnly formControlName="phoneNumber" matInput>
+      <input numberOnly formControlName="delPhoneNumber" matInput>
       <span matPrefix>+91&nbsp;</span>
-      <mat-error *ngIf="addressForm.get('phoneNumber').errors?.required">Please enter your mobile number</mat-error>
-      <mat-error *ngIf="addressForm.get('phoneNumber').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
+      <mat-error *ngIf="addressForm.get('delPhoneNumber').errors?.required">Please enter your mobile number</mat-error>
+      <mat-error *ngIf="addressForm.get('delPhoneNumber').errors?.pattern" >Please enter a valid 10 digit mobile nunmber</mat-error>
     </mat-form-field>
     <div class="btn-wrapper">
       <button mat-raised-button (click) ="closeDialog()">Cancel</button>
-      <button mat-raised-button class="ml-3" color="primary" (click) ="saveAddress()">Save</button>
+      <button mat-raised-button class="ml-3" color="primary" *ngIf="!isEdit" (click) ="saveAddress()">Save</button>
+      <button mat-raised-button class="ml-3" color="primary" *ngIf="isEdit" (click) ="updateAddress()">Update</button>
     </div>
   </form>
 </div>

@@ -3,6 +3,7 @@ import { AuthService } from 'app/services/auth.service';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize} from 'rxjs/operators';
+import { IUser } from 'app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   isRegisteredMobile: boolean = false;
   step1: boolean;
   loginForm: FormGroup;
+  userData: IUser;
 
   constructor(private _authService: AuthService,
     private _fb: FormBuilder,
@@ -59,7 +61,7 @@ export class LoginComponent implements OnInit {
     })).subscribe((resp) => {
         this.isRegisteredMobile = resp.isUserRegisted;
         /* todo need to uncomment*/
-        this._authService.setUserData(resp.user);
+        this.userData = resp.user;
         this.loginForm.get('password').enable();
       // }
     }, () => {
@@ -90,7 +92,8 @@ export class LoginComponent implements OnInit {
     delete data.confirmPassword;
     this._authService.signUpUser(data).subscribe((resp) => {
       this._authService.isLogin = true;
-      this._authService.setUserData(resp.data);
+      this.userData = resp.data;
+      this._authService.setUserData(this.userData);
       if (this._dialogRef) {
         this._dialogRef.close();
       }
@@ -108,6 +111,7 @@ export class LoginComponent implements OnInit {
       // } else{
         this.loginForm.get('phoneNumber').disable();
         this._authService.isLogin = true;
+        this._authService.setUserData(this.userData);
         if (this._dialogRef) {
           this._dialogRef.close();
         }

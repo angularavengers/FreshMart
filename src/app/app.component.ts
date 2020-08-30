@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   sidenavWidth = 4;
   cartCount = 0;
   sideBarPath: SideBar[];
-  userData: any;
+  userData: IUser;
   isLogin: boolean;
 
   constructor(private _authService: AuthService,
@@ -28,12 +28,15 @@ export class AppComponent implements OnInit{
     private _router: Router,
     private _dialog: MatDialog) {
     this._cartService.cartObservable.subscribe((cartData) => {
-      this.cartCount = Object.keys(cartData).length;
+      this.cartCount = cartData && Object.keys(cartData).length;
     });
     this._authService.authObservable.subscribe((data) => {
-      if (this._authService.isLogin) {
+      if (data && this._authService.isLogin) {
         this.userData = this._authService.getUserData();
         this.isLogin = true;
+      } else {
+        this.userData = null;
+        this.isLogin = false;
       }
     });
   }
@@ -71,6 +74,9 @@ export class AppComponent implements OnInit{
   }
   toggleMoreButton(item: SideBar) {
     item.isMore = !item.isMore;
+  }
+  logout() {
+    this._authService.logout();
   }
 
 }

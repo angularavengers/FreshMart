@@ -20,6 +20,7 @@ import { ImagepopupComponent } from './imagepopup/imagepopup.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AddressComponent } from './address/address.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { OrderStepsComponent } from './order-steps/order-steps.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -53,7 +54,8 @@ const routes: Routes = [
       ImagepopupComponent,
       ContactUsComponent,
       OrderSummaryComponent,
-      AddressComponent],
+      AddressComponent,
+      OrderStepsComponent],
   entryComponents: [ImagepopupComponent, AddressComponent],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],
