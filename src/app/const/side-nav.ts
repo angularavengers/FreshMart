@@ -1,9 +1,20 @@
 
+export interface CategoryList{
+  title: string,
+  icon: string,
+  iconColor?: string,
+  path: string,
+  heading: string,
+  categoryType: string
+}
 export interface SideBar {
-title: string,
+   title: string,
    icon: string,
    path: string,
-   heading: string
+   iconColor?: string,
+   isMore?: boolean,
+   heading: string,
+   isChildVisible?: CategoryList[]
 }
 
 export const sideBarPath: SideBar[] = [
@@ -14,53 +25,61 @@ export const sideBarPath: SideBar[] = [
      path: '/home'
    },
    {
-     title: 'Volunteer Registration',
-     icon: 'person_add',
-     heading: 'Volunteer Registration',
-     path: '/volunteer'
-   },
+    title: 'VEGETABLES',
+    icon: 'eco',
+    heading: 'VEGETABLES',
+    iconColor: '#008000',
+    isMore: true,
+    path: '/home',
+    isChildVisible: [
+      {
+        title: 'GREEN VEGETABLES',
+        icon: '../assets/side-nav-icon/green.jpg',
+        path: '',
+        heading: '',
+        categoryType: ''
+      },
+      {
+        title: 'FLOWER VEGETABLES',
+        icon: '../assets/side-nav-icon/flower.jpg',
+        path: '',
+        heading: '',
+        categoryType: ''
+      },
+      {
+        title: 'FRUIT VEGETABLES',
+        icon: '../assets/side-nav-icon/fruit.jpg',
+        path: '',
+        heading: '',
+        categoryType: ''
+      },
+      {
+        title: 'STEM VEGETABLES',
+        icon: '../assets/side-nav-icon/stem.jpg',
+        path: '',
+        heading: '',
+        categoryType: ''
+      },
+      {
+        title: 'ROOTS, BULBS AND TUBERS',
+        icon: '../assets/side-nav-icon/root.jpg',
+        path: '',
+        heading: '',
+        categoryType: ''
+      }
+    ]
+  },
    {
-     title: 'Donate Food',
-     icon: 'card_giftcard',
-     heading: 'Donate Food',
-     path: '/donateFood'
-   },
-   {
-     title: 'Carona HelpLine',
-     icon: 'help_outline',
-     heading: 'Carona HelpLine',
-     path: '/caronaHelpLine'
-   },
+    title: 'About FreshMart',
+    icon: 'people',
+    heading: 'About Fresh Mart',
+    path: '/aboutus'
+  },
  {
-     title: 'RequestFood/Grocery',
-     icon: 'fastfood',
-     heading: 'Request Food',
-     path: '/requestFood'
-   },
- 
- {
-     title: 'Pet Food',
-     icon: 'pets',
-     heading: 'Pet Food',
-     path: '/petFood'
-   },
- {
-     title: 'Medical',
-     icon: 'local_pharmacy',
-     heading: 'Medical',
-     path: '/medical'
-   },
- {
-     title: 'Daily Pass',
-     icon: 'accessibility',
-     heading: 'Get Pass',
-     path: '/dailyPass'
-   },
- {
-     title: 'Important contacts',
+     title: 'Contact US',
      icon: 'phone_in_talk',
      heading: 'Get Contacts',
-     path: '/importantContacts'
+     path: '/contactus'
    }
    ];
 

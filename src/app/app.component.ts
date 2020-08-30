@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SideBar } from './const/side-nav';
+import { Component, OnInit } from '@angular/core';
+import { sideBarPath, SideBar } from './const/side-nav';
 import { CartService } from './services/cart.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -12,46 +12,15 @@ import { IUser } from './models/user.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   isDarkTheme = false;
   lastDialogResult: string;
   mode: string;
   value: number;
   sidenavWidth = 4;
   cartCount = 0;
-  sideBarPath: SideBar[] = [
-    {
-      title: 'Home',
-      icon: 'home',
-      heading: 'Home',
-      path: '/home'
-    },
-    {
-      title: 'test',
-      icon: 'person_add',
-      heading: 'test',
-      path: '/home'
-    },
-    {
-      title: 'test',
-      icon: 'card_giftcard',
-      heading: 'test',
-      path: '/home'
-    },
-    {
-      title: 'test',
-      icon: 'help_outline',
-      heading: 'test',
-      path: '/home'
-    },
-    {
-      title: 'test',
-      icon: 'fastfood',
-      heading: 'test',
-      path: '/home'
-    }
-  ];
-  userData: IUser;
+  sideBarPath: SideBar[];
+  userData: any;
   isLogin: boolean;
 
   constructor(private _authService: AuthService,
@@ -67,6 +36,10 @@ export class AppComponent {
         this.isLogin = true;
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.sideBarPath = sideBarPath;
   }
 
   openLoginDialog(isFromCart?: boolean) {
@@ -95,6 +68,9 @@ export class AppComponent {
       sidenav.close()
     }
     this.sidenavWidth = 4;
+  }
+  toggleMoreButton(item: SideBar) {
+    item.isMore = !item.isMore;
   }
 
 }

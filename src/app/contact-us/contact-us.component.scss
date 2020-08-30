@@ -1,0 +1,48 @@
+.container{
+    width:  500px;
+    height: 500px;
+}
+
+.contact-form{
+    background: #fff;
+    margin-top: 1%;
+    width: 100%;
+}
+.contact-form{
+    h3{
+        color: #0062cc;
+        text-align: center;
+        font-size:16px;
+    }
+    h5{
+        color: #0062cc;
+        margin-bottom: 5%;
+        font-size:12px;
+        text-align: center;
+    }
+    .display-center{
+      margin-left: 10%;
+      margin-top: 5px;
+    }
+}
+.submitButton{
+    background-color: #0062cc;
+}
+.submitButton[disabled]{
+    background-color: #808080;
+    opacity: 0.8;
+}
+.containerPanel{
+    width:  750px;
+    height: 550px;
+    margin-left: 25%;
+}
+
+.bannerimage{
+  width: 700px;
+  height: 500px;  
+  padding:5px;
+} 
+.thanksPanelText{
+    padding:10px;
+}

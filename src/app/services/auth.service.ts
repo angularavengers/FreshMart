@@ -11,7 +11,8 @@ export class AuthService {
   private _authSubject: BehaviorSubject<IUser> = new BehaviorSubject(null);
   public isLogin: boolean;
   public authObservable = this._authSubject.asObservable();
-
+  public baseURL = 'http://localhost:3000';
+  
   constructor(private _http: HttpClient) {
     this.checkSession();
   }
@@ -23,7 +24,6 @@ export class AuthService {
       this.isLogin = true;
     }
   }
-  // public baseURL= 'http://localhost:3000'
   // constructor(private _http: HttpClient) { }
 
   // loginUser(phoneNumber: string) {
@@ -31,15 +31,15 @@ export class AuthService {
   // };
 
   checkUser(data: any): Observable<any> {
-    return this._http.post('api/users/login', data);
+    return this._http.post(`${this.baseURL}/users/login`, data);
   }
 
   validateUser(data: any): Observable<any> {
-    return this._http.post('api/users/verifyUser', data);
+    return this._http.post(`${this.baseURL}/users/verifyUser`, data);
   }
 
   signUpUser(data: any): Observable<any> {
-    return this._http.post('api/users/signUp', data);
+    return this._http.post(`${this.baseURL}/users/signUp`, data);
   }
 
   getAllUsers(): Observable<any> {
