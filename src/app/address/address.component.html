@@ -52,8 +52,8 @@
     </mat-form-field>
     <div class="btn-wrapper">
       <button mat-raised-button (click) ="closeDialog()">Cancel</button>
-      <button mat-raised-button class="ml-3" color="primary" *ngIf="!isEdit" (click) ="saveAddress()">Save</button>
-      <button mat-raised-button class="ml-3" color="primary" *ngIf="isEdit" (click) ="updateAddress()">Update</button>
+      <button mat-raised-button class="ml-3" color="primary" [disabled]="addressForm.invalid" *ngIf="!isEdit" (click) ="saveAddress()">Save</button>
+      <button mat-raised-button class="ml-3" color="primary" [disabled]="addressForm.invalid" *ngIf="isEdit" (click) ="updateAddress()">Update</button>
     </div>
   </form>
 </div>

@@ -22,7 +22,7 @@
                 <div class="col-md-9 col-8">
                   <h6>{{item.titlaText}} {{item.unit}}</h6>
                   <div class="pr-4 flex-align-center position-absolute-bottom">
-                    <h6> ₹ {{ item.price * item.qty }} </h6>
+                    <h6> ₹ {{ item.price * item.itemQuantity }} </h6>
                     <app-qty-plus-minus [item]="item"> </app-qty-plus-minus>
                   </div>
                 </div>

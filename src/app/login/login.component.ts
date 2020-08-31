@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize} from 'rxjs/operators';
 import { IUser } from 'app/models/user.model';
+import { CartService } from 'app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _authService: AuthService,
     private _fb: FormBuilder,
+    private _cartService: CartService,
     private _dialogRef: MatDialogRef<LoginComponent>) {
       this.initForm();
   }
@@ -61,23 +63,11 @@ export class LoginComponent implements OnInit {
     })).subscribe((resp) => {
         this.isRegisteredMobile = resp.isUserRegisted;
         /* todo need to uncomment*/
-        this.userData = resp.user;
         this.loginForm.get('password').enable();
       // }
     }, () => {
       this.isRegisteredMobile = false;
     });
-    // this.step1 = false;
-    // this.loginForm.get('mobile').disable();
-    // this.loginForm.get('otp').enable();
-    // this.authService.loginUser(this.loginForm.get('mobile').value).subscribe((res) => {
-    //   if (res.user && res.user.isVerified) {
-    //     this.isRegisteredMobile = res.user.isVerified;
-    //     this.loginForm.get('signUpForm').disable();
-    //   } else {
-    //     this.loginForm.get('signUpForm').enable();
-    //   }
-    // })
   }
 
   setStep1() {
@@ -111,7 +101,33 @@ export class LoginComponent implements OnInit {
       // } else{
         this.loginForm.get('phoneNumber').disable();
         this._authService.isLogin = true;
-        this._authService.setUserData(this.userData);
+        this.userData = resp.user;
+
+        
+        const newCart = {};
+        resp.cartItems.forEach((v, i) => {
+          newCart[v._id] = {...v, itemQuantity: this.userData.itemInCart[i].itemQuantity };
+        });
+        
+        let localCart: any = localStorage.getItem('FreshMartCart');
+        if (localCart) {
+          localCart = JSON.parse(localCart);
+          const localCartKeys = Object.keys(localCart);
+          localCartKeys.forEach((v, i) => {
+            if(!newCart[v] || newCart[v].itemQuantity !== localCart[v].itemQuantity) {
+              this._cartService.addItemToCart(localCart[v], localCart[v].itemQuantity)
+            }
+          });
+        }
+        
+        setTimeout(() => {
+          if (localCart) {
+            Object.assign(newCart, localCart);
+          }
+          localStorage.setItem('FreshMartCart', JSON.stringify(newCart));
+          this._authService.setUserData(this.userData);
+        }, 0);
+
         if (this._dialogRef) {
           this._dialogRef.close();
         }

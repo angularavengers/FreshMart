@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { IUser } from 'app/models/user.model';
 import { Router } from '@angular/router';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,22 @@ export class AuthService {
   public authObservable = this._authSubject.asObservable();
   public baseURL = 'http://localhost:3000';
   
-  constructor(private _http: HttpClient,
+  constructor(private _http: HttpService,
     private _router: Router) {
     this.checkSession();
   }
 
   public checkSession() {
-    const userData = localStorage.getItem('UserData');
-    if (userData) {
-      this.setUserData(JSON.parse(userData));
+    const FreshMartUserData = localStorage.getItem('FreshMartUserData');
+    if (FreshMartUserData) {
+      this.setUserData(JSON.parse(FreshMartUserData));
       this.isLogin = true;
     }
   }
 
   logout() {
-    localStorage.removeItem('UserData');
+    localStorage.removeItem('FreshMartUserData');
+    localStorage.removeItem('FreshMartCart');
     this.isLogin = false;
     this.setUserData(null);
     this._router.navigate(['/home']);
@@ -36,15 +38,15 @@ export class AuthService {
   }
 
   checkUser(data: any): Observable<any> {
-    return this._http.post(`${this.baseURL}/users/login`, data);
+    return this._http.post(`api/users/login`, data);
   }
 
   validateUser(data: any): Observable<any> {
-    return this._http.post(`${this.baseURL}/users/verifyUser`, data);
+    return this._http.post(`api/users/verifyUser`, data);
   }
 
   signUpUser(data: any): Observable<any> {
-    return this._http.post(`${this.baseURL}/users/signUp`, data);
+    return this._http.post(`api/users/signUp`, data);
   }
 
   getAllUsers(): Observable<any> {
@@ -53,22 +55,9 @@ export class AuthService {
 
   public setUserData(data: IUser) {
     this._userData = data;
-    // data.address = [];
-    // data.address[0] = {
-    //   firstName: 'Lokesh',
-    //   lastName: 'Badgujar',
-    //   addressLine1: 'B502',
-    //   addressLine2: 'Aashman',
-    //   landMark: 'Munimji',
-    //   city: 'Pune',
-    //   state: 'MH',
-    //   pincode: '412101',
-    //   isdefault: true,
-    //   phoneNumber: '9404745225'
-    // };
     this._authSubject.next(data);
     if (data) {
-      localStorage.setItem('UserData', JSON.stringify(this._userData));
+      localStorage.setItem('FreshMartUserData', JSON.stringify(this._userData));
     }
   }
 

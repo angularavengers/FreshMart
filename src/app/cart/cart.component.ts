@@ -11,7 +11,7 @@ export class CartComponent implements OnInit {
 
   get totalCost(): number {
     return this.cartList.length && this.cartList.reduce((total, v) => {
-      return total + (v.qty * v.price);
+      return total + (v.itemQuantity * v.price);
     }, 0)
   };
 

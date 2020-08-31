@@ -18,7 +18,7 @@ export class OrderSummaryComponent implements OnInit {
   
   get totalCost(): number {
     return this.cartList && this.cartList.reduce((total, v) => {
-      return total + (v.qty * v.price);
+      return total + (v.itemQuantity * v.price);
     }, 0)
   };
 

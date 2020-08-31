@@ -21,6 +21,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AddressComponent } from './address/address.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderStepsComponent } from './order-steps/order-steps.component';
+import { PageSpinnerComponent } from './page-spinner.component/page-spinner.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -55,7 +56,8 @@ const routes: Routes = [
       ContactUsComponent,
       OrderSummaryComponent,
       AddressComponent,
-      OrderStepsComponent],
+      OrderStepsComponent,
+      PageSpinnerComponent],
   entryComponents: [ImagepopupComponent, AddressComponent],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],

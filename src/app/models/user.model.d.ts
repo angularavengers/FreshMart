@@ -5,7 +5,8 @@ export interface IUser {
     isVerified: boolean;
     lName: string;
     phoneNumber: string
-    roles: any[]
+    roles: any[];
+    itemInCart: any[];
 }
 
 export interface IAddress {

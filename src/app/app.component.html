@@ -43,7 +43,7 @@
       <div *ngIf="isLogin">
         <button mat-button [matMenuTriggerFor]="profileMenu">
           <mat-icon class="white-icon">person</mat-icon>
-          <span class="btn-label">Hello {{userData.fName}}</span>
+          <span class="btn-label">Hello {{userData.fName | uppercase}}</span>
         </button>
         <mat-menu #profileMenu="matMenu" yPosition="below" overlapTrigger="false">
           <button mat-menu-item (click)="logout()">Logout</button>
@@ -93,3 +93,4 @@
  
 </mat-sidenav-container>
 <app-imagepopup ></app-imagepopup>
+<app-page-spinner></app-page-spinner>

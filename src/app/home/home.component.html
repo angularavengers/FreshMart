@@ -1,5 +1,5 @@
 <div class="page-container">
-  <div class="mat-card-wrapper" style="display:flex; flex-direction: row;   flex-wrap: wrap;">
+  <div class="mat-card-wrapper" style="display:flex; flex-direction: row;   flex-wrap: wrap;" *ngIf="dataSource">
     <ng-container *ngFor="let item of obs | async">
       <mat-card class="mat-card-home flip-card">
         <mat-card-content>

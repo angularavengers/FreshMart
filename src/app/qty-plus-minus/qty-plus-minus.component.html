@@ -3,7 +3,7 @@
     <button mat-mini-fab color="primary" (click)="removeItemFromCart(item)" aria-label="Remove One">
       <mat-icon>remove</mat-icon>
     </button>
-    <span>{{ cartList[item.id].qty }}</span>
+    <span>{{ cartList[item._id].itemQuantity }}</span>
     <button mat-mini-fab color="primary" (click)="addItemToCart(item)" aria-label="Add One More">
       <mat-icon>add</mat-icon>
     </button>
