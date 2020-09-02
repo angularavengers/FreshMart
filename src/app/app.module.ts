@@ -22,12 +22,14 @@ import { AddressComponent } from './address/address.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderStepsComponent } from './order-steps/order-steps.component';
 import { PageSpinnerComponent } from './page-spinner.component/page-spinner.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'contactus', component: ContactUsComponent},
   {path: 'aboutus', component: AboutUsComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'payment', component: PaymentComponent},
   {path: 'cart', component: CartComponent, canActivate: [ Authguard ]},
   {path: 'order-summary', component: OrderSummaryComponent, canActivate: [ Authguard ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -57,7 +59,8 @@ const routes: Routes = [
       OrderSummaryComponent,
       AddressComponent,
       OrderStepsComponent,
-      PageSpinnerComponent],
+      PageSpinnerComponent,
+      PaymentComponent],
   entryComponents: [ImagepopupComponent, AddressComponent],
   bootstrap: [AppComponent],
   exports: [AppMaterialModule],
